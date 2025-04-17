@@ -9,72 +9,6 @@ import '../../common/home_page_widgets/layered_container_example.dart';
 import '../../common/home_page_widgets/properties_available.dart';
 import '../../utils/theme/my_icon_path.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: const [
-          HomePage(),
-          Center(child: Text('Properties')),
-          Center(child: Text('Auctions')),
-          Center(child: Text('Profile')),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 0, blurRadius: 10)],
-          border: Border(top: BorderSide(color: Colors.grey.withOpacity(0.3), width: 1)),
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppTheme.secondaryColor,
-          unselectedItemColor: Colors.grey,
-          showUnselectedLabels: true,
-          items: [
-            BottomNavigationBarItem(
-              icon: MySvg(assetName: MyIconPath.smartHome, color: AppTheme.greyColor),
-              activeIcon: MySvg(assetName: MyIconPath.smartHome, color: AppTheme.secondaryColor),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: MySvg(assetName: MyIconPath.buildingSkyscraper, color: AppTheme.greyColor),
-              activeIcon: MySvg(assetName: MyIconPath.buildingSkyscraper, color: AppTheme.secondaryColor),
-              label: 'Properties',
-            ),
-            BottomNavigationBarItem(
-              icon: MySvg(assetName: MyIconPath.hammer, color: AppTheme.greyColor),
-              activeIcon: MySvg(assetName: MyIconPath.hammer, color: AppTheme.secondaryColor),
-              label: 'Auctions',
-            ),
-            BottomNavigationBarItem(
-              icon: MySvg(assetName: MyIconPath.user, color: AppTheme.greyColor),
-              activeIcon: MySvg(assetName: MyIconPath.user, color: AppTheme.secondaryColor),
-              label: 'Profile',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -187,49 +121,49 @@ class HomePage extends StatelessWidget {
               ),
 
               // Category Tabs
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            bottomLeft: Radius.circular(20),
-                          ),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Real Estate',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Automobiles',
-                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              //   child: Row(
+              //     children: [
+              //       Expanded(
+              //         child: Container(
+              //           padding: const EdgeInsets.symmetric(vertical: 12),
+              //           decoration: BoxDecoration(
+              //             color: Colors.black,
+              //             borderRadius: const BorderRadius.only(
+              //               topLeft: Radius.circular(20),
+              //               bottomLeft: Radius.circular(20),
+              //             ),
+              //           ),
+              //           child: const Center(
+              //             child: Text(
+              //               'Real Estate',
+              //               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       Expanded(
+              //         child: Container(
+              //           padding: const EdgeInsets.symmetric(vertical: 12),
+              //           decoration: BoxDecoration(
+              //             color: Colors.grey[200],
+              //             borderRadius: const BorderRadius.only(
+              //               topRight: Radius.circular(20),
+              //               bottomRight: Radius.circular(20),
+              //             ),
+              //           ),
+              //           child: const Center(
+              //             child: Text(
+              //               'Automobiles',
+              //               style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
 
               // Property Listings
               PropertyHorizontalList(),

@@ -9,19 +9,20 @@ class LayeredContainerExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
       child: Container(
-        height: 200,
-        width: double.infinity, // Ensure full width
+        height: 192,
+        width: 342, // Ensure full width
         // Don't set decoration with image here - we'll use a Stack instead
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
           child: Stack(
             fit: StackFit.expand, // Make sure Stack fills the Container
             children: [
               // Layer 1: Background Image (bottom layer)
               Image.asset(
-                MyImagePath.bg2, // Replace with your actual image path
+                MyImagePath.bg2,
+                // Replace with your actual image path
                 fit: BoxFit.cover,
               ),
 
@@ -41,23 +42,23 @@ class LayeredContainerExample extends StatelessWidget {
 
               // Layer 3: Content (top layer)
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MyImage(assetName: MyImagePath.unionBank),
+                    MyImage(assetName: MyImagePath.unionBank, width: 94, height: 20),
+                    SizedBox(height: 16),
                     // Bank name
                     const Text(
-                      'Mega Auction of 800+',
-                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      'Mega Auction of 800+ \n Property across India',
+                      style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                     ),
 
-                    // Auction text
-                    const Text('Property across India', style: TextStyle(color: Colors.white, fontSize: 14)),
-                    Text('Start from 28 Apr,2025', style: TextStyle(color: AppTheme.greyColor, fontSize: 14)),
+                    SizedBox(height: 2),
 
-                    const Spacer(), // Push the button to the bottom
-                    // Button
+                    Text('Start from 28 Apr,2025', style: TextStyle(color: AppTheme.greyColor, fontSize: 11)),
+                    SizedBox(height: 22),
+
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -66,7 +67,7 @@ class LayeredContainerExample extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       ),
-                      child: const Text('View Details'),
+                      child: const Text('Explore Now', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
                     ),
                   ],
                 ),

@@ -53,7 +53,7 @@ class PropertyHorizontalList extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: properties.length,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 final property = properties[index];
