@@ -1,5 +1,8 @@
 import 'package:baanknet/utils/theme/my_image_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../utils/theme/app_theme.dart';
 
 class PropertiesAvailable extends StatelessWidget {
   final Function() onSeeAllPressed;
@@ -22,56 +25,58 @@ class PropertiesAvailable extends StatelessWidget {
     // Generate properties list automatically
     final List<PropertyItem> properties = _generatePropertyItems(itemCount);
 
-    return Column(
-      children: [
-        // Header with title and "See all" button
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: Theme.of(
-                  context,
-                ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold, color: Colors.black87),
-              ),
-              if (showSeeAll)
-                TextButton(
-                  onPressed: onSeeAllPressed,
-                  child: Row(
-                    children: [
-                      Text(
-                        'See all',
-                        style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(width: 4),
-                      Icon(Icons.arrow_forward, size: 16, color: Theme.of(context).colorScheme.secondary),
-                    ],
+    return Container(
+      color: AppTheme.whiteColor,
+      child: Column(
+        children: [
+          // Header with title and "See all" button
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black87, fontSize: 16.sp)),
+                if (showSeeAll)
+                  GestureDetector(
+                    onTap: onSeeAllPressed,
+                    child: Row(
+                      children: [
+                        Text(
+                          'See all',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                        SizedBox(width: 4.w),
+                        Icon(Icons.arrow_forward, size: 16.r, color: Theme.of(context).colorScheme.secondary),
+                      ],
+                    ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
-        ),
 
-        const SizedBox(height: 16),
+          SizedBox(height: 12.h),
 
-        // Properties grid
-        SizedBox(
-          height: 240, // Fixed height for horizontal scrolling list
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: properties.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.only(right: index == properties.length - 1 ? 0 : 16),
-                child: PropertyCard(property: properties[index]),
-              );
-            },
+          // Properties grid
+          SizedBox(
+            height: 240.h, // Fixed height for horizontal scrolling list
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              itemCount: properties.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(right: index == properties.length - 1 ? 0 : 16.w),
+                  child: PropertyCard(property: properties[index]),
+                );
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -113,10 +118,10 @@ class PropertyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 220,
+      width: 220.w,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8, offset: const Offset(0, 2))],
       ),
       child: Stack(
@@ -139,22 +144,22 @@ class PropertyCard extends StatelessWidget {
 
           // Property ID and Category
           Positioned(
-            bottom: 16,
-            left: 16,
-            right: 16,
+            bottom: 16.h,
+            left: 16.w,
+            right: 16.w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Property ID
-                Text(
-                  property.id,
-                  style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+                Text(property.id, style: TextStyle(color: Colors.white, fontSize: 16.sp, fontWeight: FontWeight.w600)),
 
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
 
                 // Property Category
-                Text(property.category, style: const TextStyle(color: Colors.white, fontSize: 16)),
+                Text(
+                  property.category,
+                  style: TextStyle(color: Colors.white, fontSize: 12.sp, fontWeight: FontWeight.w400),
+                ),
               ],
             ),
           ),
@@ -184,7 +189,7 @@ class PropertiesAvailableExample extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             PropertiesAvailable(
               onSeeAllPressed: () {
                 // Navigate to all properties screen
@@ -195,7 +200,7 @@ class PropertiesAvailableExample extends StatelessWidget {
               // itemCount: 3,
               // showSeeAll: true,
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
           ],
         ),
       ),
