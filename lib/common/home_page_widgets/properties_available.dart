@@ -31,7 +31,7 @@ class PropertiesAvailable extends StatelessWidget {
         children: [
           // Header with title and "See all" button
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+            padding: EdgeInsets.only(left: 24.0.w, right: 24.w, top: 20.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -75,6 +75,7 @@ class PropertiesAvailable extends StatelessWidget {
               },
             ),
           ),
+          SizedBox(height: 20.h),
         ],
       ),
     );

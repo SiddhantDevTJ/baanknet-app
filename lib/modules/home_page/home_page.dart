@@ -26,98 +26,129 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header with blue background
-              Container(
-                color: AppTheme.primaryColor,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Logo and menu
-                    Padding(
-                      padding: EdgeInsets.all(16.0.r),
-                      child: Row(
-                        children: [
-                          IconButton(icon: Icon(Icons.menu, color: Colors.white), onPressed: () {}),
-                          SizedBox(width: 10.w),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                MyImage(assetName: MyImagePath.baankknet, color: AppTheme.whiteColor),
-                                SizedBox(width: 10.w),
-                                Container(width: 1.w, height: 24.h, color: Colors.white30),
-                                SizedBox(width: 10.w),
-                                MySvg(assetName: MyImagePath.psbAlliance, color: AppTheme.whiteColor),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+              Stack(
+                children: [
+                  // Background Image
+                  Positioned.fill(child: Image.asset(MyImagePath.bg, fit: BoxFit.fitWidth)),
 
-                    // Hero text
-                    Padding(
-                      padding: EdgeInsets.all(16.0.r),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 30.h),
-                          Text(
-                            'Your Search for a Property ends here',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 32.sp),
-                          ),
-                          SizedBox(height: 16.h),
-                          Text(
-                            'An advanced property listing and e-auction platform tailored for banks and lenders.',
-                            style: TextStyle(color: Colors.white, fontSize: 16.sp),
-                          ),
-                          SizedBox(height: 30.h),
-                        ],
-                      ),
-                    ),
-
-                    // Search bar
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
-                      child: Container(
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8.r)),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Search "Property"...',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            prefixIcon: Icon(Icons.search, color: Colors.grey),
-                            suffixIcon: Container(
-                              padding: EdgeInsets.all(10.r),
-                              child: Icon(Icons.arrow_forward, color: Colors.deepOrange),
-                            ),
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(vertical: 15.h),
-                          ),
+                  // Gradient Overlay
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [AppTheme.primaryColor.withOpacity(0.8), AppTheme.primaryColor.withOpacity(0.3)],
                         ),
                       ),
                     ),
-                    SizedBox(height: 30.h),
-                  ],
-                ),
+                  ),
+
+                  // Content
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Logo and menu
+                      Padding(
+                        padding: EdgeInsets.all(16.0.r),
+                        child: Row(
+                          children: [
+                            IconButton(icon: Icon(Icons.menu, color: Colors.white), onPressed: () {}),
+                            SizedBox(width: 10.w),
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  MyImage(assetName: MyImagePath.baankknet, color: AppTheme.whiteColor),
+                                  SizedBox(width: 10.w),
+                                  Container(width: 1.w, height: 24.h, color: Colors.white30),
+                                  SizedBox(width: 10.w),
+                                  MySvg(assetName: MyImagePath.psbAlliance, color: AppTheme.whiteColor),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // Hero text
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 30.h),
+                            Text(
+                              'Your Search for a Property ends here',
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 24.sp),
+                            ),
+                            SizedBox(height: 16.h),
+                            Text(
+                              'An advanced property listing and e-auction platform tailored for banks and lenders.',
+                              style: TextStyle(color: Colors.white, fontSize: 14.sp, fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(height: 30.h),
+                          ],
+                        ),
+                      ),
+
+                      // Search bar
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        child: Container(
+                          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8.r)),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Search "Property"...',
+                              hintStyle: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.w600),
+                              suffixIcon: Icon(Icons.search, color: AppTheme.secondaryColor),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 20.w),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 70.h),
+                    ],
+                  ),
+                ],
               ),
+
+              SizedBox(height: 24.h),
 
               // Mega Auction Banner
               LayeredContainerExample(),
 
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                child: Divider(height: 1, color: AppTheme.homeDividerColor, thickness: 3),
+              ),
+
               // Property Listings
               ExploreCatogerySection(),
+
+              Divider(height: 1, color: AppTheme.homeDividerColor, thickness: 3),
               // Bid Live Section
               BidLiveSection(),
 
               // Upcoming Auctions Section
               UpcomingPropertyAuction(),
 
+              Divider(height: 1, color: AppTheme.homeDividerColor, thickness: 3),
+
               // About BaankNet Section
               AboutBankNetSection(),
+
+              Divider(height: 1, color: AppTheme.homeDividerColor, thickness: 3),
 
               // Properties Available
               PropertiesAvailable(onSeeAllPressed: () {}),
 
+              Divider(height: 1, color: AppTheme.homeDividerColor.withOpacity(0.1), thickness: 3),
+
               // Promoters Bank Section
               PromoterBankSection(),
+
+              Divider(height: 1, color: AppTheme.homeDividerColor, thickness: 3),
 
               // FAQ Section
               FaqSection(),

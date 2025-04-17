@@ -14,6 +14,7 @@ class AppTheme {
   static const Color textDarkColor = Color(0xFF333333);
   static const Color textLightColor = Color(0xFF888888);
   static const Color dividerColor = Color(0xFFEEEEEE);
+  static Color homeDividerColor = Colors.black12;
 
   // Typography
   static TextTheme textTheme = TextTheme(

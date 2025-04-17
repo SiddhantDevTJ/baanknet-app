@@ -10,7 +10,7 @@ class LayeredContainerExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 15.h),
+      padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 10.h),
       child: Container(
         height: 192.h,
         width: 342.w, // Ensure full width

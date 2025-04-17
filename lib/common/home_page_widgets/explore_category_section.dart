@@ -100,36 +100,38 @@ class _ExploreCategorySectionState extends State<ExploreCatogerySection> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0.w),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = 0;
-                      });
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
-                      decoration: BoxDecoration(
-                        color: _selectedIndex == 0 ? Colors.black : Colors.grey[200],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20.r),
-                          bottomLeft: Radius.circular(20.r),
-                        ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                  },
+                  child: Container(
+                    width: 120.w,
+                    padding: EdgeInsets.symmetric(vertical: 12.h),
+                    decoration: BoxDecoration(
+                      color: _selectedIndex == 0 ? Colors.black : Colors.grey[200],
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.r),
+                        bottomLeft: Radius.circular(20.r),
                       ),
-                      child: Center(
-                        child: Text(
-                          'Real Estate',
-                          style: TextStyle(
-                            color: _selectedIndex == 0 ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Real Estate',
+                        style: TextStyle(
+                          color: _selectedIndex == 0 ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ),
                   ),
                 ),
-                Expanded(
+                Container(
+                  width: 120.w,
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -151,6 +153,7 @@ class _ExploreCategorySectionState extends State<ExploreCatogerySection> {
                           style: TextStyle(
                             color: _selectedIndex == 1 ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
+                            fontSize: 12.sp,
                           ),
                         ),
                       ),

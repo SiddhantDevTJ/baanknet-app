@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../modules/home_page/home_page.dart';
 import '../../utils/theme/app_theme.dart';
 
 class FaqSection extends StatefulWidget {
@@ -53,65 +52,94 @@ class _FaqSectionState extends State<FaqSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('FAQ\'s', style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold)),
+          Text('FAQ\'s', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
           SizedBox(height: 16.h),
-          ExpansionPanelList(
-            elevation: 0,
-            expandedHeaderPadding: EdgeInsets.zero,
-            dividerColor: Colors.grey[300],
-            animationDuration: Duration(milliseconds: 300),
-            expansionCallback: (int index, bool isExpanded) {
-              setState(() {
-                _faqItems[index].isExpanded = !_faqItems[index].isExpanded;
-              });
-            },
-            children:
-                _faqItems.map<ExpansionPanel>((FaqItem item) {
-                  return ExpansionPanel(
-                    canTapOnHeader: true,
-                    headerBuilder: (BuildContext context, bool isExpanded) {
-                      return ListTile(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                item.question,
-                                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
-                              ),
-                            ),
-                            Icon(item.isExpanded ? Icons.remove : Icons.add, color: AppTheme.secondaryColor),
-                          ],
-                        ),
-                      );
-                    },
-                    body: Padding(
-                      padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, bottom: 16.0.h),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(item.answer, style: TextStyle(fontSize: 14.sp, color: Colors.grey[700])),
-                      ),
-                    ),
-                    isExpanded: item.isExpanded,
-                    backgroundColor: AppTheme.whiteColor,
-                  );
-                }).toList(),
-          ),
+          Divider(color: Colors.grey[300], thickness: 1.0, height: 1.0),
 
-          SizedBox(height: 24.h),
-          // See all questions button
-          Center(
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'See all questions',
-                style: TextStyle(color: AppTheme.secondaryColor, fontWeight: FontWeight.bold),
-              ),
+          // Use custom implementation instead of Accordion widget to have more control
+          Column(
+            children: List.generate(_faqItems.length * 2 - 1, (index) {
+              // Even indices are FAQ items
+              if (index % 2 == 0) {
+                final itemIndex = index ~/ 2;
+                return _buildFaqItem(_faqItems[itemIndex]);
+              }
+              // Odd indices are dividers
+              else {
+                return Divider(color: Colors.grey[300], thickness: 1.0, height: 1.0);
+              }
+            }),
+          ),
+          SizedBox(height: 10.h),
+          GestureDetector(
+            onTap: () {},
+            child: Row(
+              children: [
+                Text(
+                  'See all questions',
+                  style: TextStyle(color: AppTheme.secondaryColor, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(width: 8.w),
+                Icon(Icons.arrow_forward, size: 18.sp, color: AppTheme.secondaryColor),
+              ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildFaqItem(FaqItem item) {
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {
+            setState(() {
+              for (var faqItem in _faqItems) {
+                faqItem.isExpanded = faqItem == item ? !faqItem.isExpanded : false;
+              }
+            });
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 14.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    item.question,
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13.sp, color: Colors.black),
+                  ),
+                ),
+                _buildIcon(item.isExpanded),
+              ],
+            ),
+          ),
+        ),
+        // Content area
+        AnimatedCrossFade(
+          firstChild: const SizedBox(height: 0),
+          secondChild: Padding(
+            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 16.h),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(item.answer, style: TextStyle(fontSize: 12.sp, color: Colors.grey[700])),
+            ),
+          ),
+          crossFadeState: item.isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          duration: const Duration(milliseconds: 300),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildIcon(bool isExpanded) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return ScaleTransition(scale: animation, child: child);
+      },
+      child: Icon(isExpanded ? Icons.remove : Icons.add, key: ValueKey<bool>(isExpanded), color: AppTheme.greyColor),
     );
   }
 }
