@@ -85,20 +85,23 @@ class _ExploreCategorySectionState extends State<ExploreCatogerySection> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       // color: Colors.yellow,
       height: 418.h,
-      margin: EdgeInsets.symmetric(vertical: 24.h),
+      // margin: EdgeInsets.symmetric(vertical: 24.h),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-            child: Text('Explore Assets by Category', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
-          ),
+          Text('Explore Assets by Category', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
           SizedBox(height: 12.h),
           // Segmented Control with tap functionality
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.all(Radius.circular(40.r)),
+            ),
+            width: 230.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -109,14 +112,10 @@ class _ExploreCategorySectionState extends State<ExploreCatogerySection> {
                     });
                   },
                   child: Container(
-                    width: 120.w,
-                    padding: EdgeInsets.symmetric(vertical: 12.h),
+                    padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
                     decoration: BoxDecoration(
                       color: _selectedIndex == 0 ? Colors.black : Colors.grey[200],
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.r),
-                        bottomLeft: Radius.circular(20.r),
-                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(20.r)),
                     ),
                     child: Center(
                       child: Text(
@@ -130,31 +129,26 @@ class _ExploreCategorySectionState extends State<ExploreCatogerySection> {
                     ),
                   ),
                 ),
-                Container(
-                  width: 120.w,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = 1;
-                      });
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
-                      decoration: BoxDecoration(
-                        color: _selectedIndex == 1 ? Colors.black : Colors.grey[200],
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.r),
-                          bottomRight: Radius.circular(20.r),
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Automobiles',
-                          style: TextStyle(
-                            color: _selectedIndex == 1 ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12.sp,
-                          ),
+                SizedBox(width: 4.w),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+                    decoration: BoxDecoration(
+                      color: _selectedIndex == 1 ? Colors.black : Colors.grey[200],
+                      borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Automobiles',
+                        style: TextStyle(
+                          color: _selectedIndex == 1 ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
                         ),
                       ),
                     ),

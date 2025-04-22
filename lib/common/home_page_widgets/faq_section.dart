@@ -84,6 +84,7 @@ class _FaqSectionState extends State<FaqSection> {
               ],
             ),
           ),
+          SizedBox(height: 10.h),
         ],
       ),
     );
@@ -101,7 +102,7 @@ class _FaqSectionState extends State<FaqSection> {
             });
           },
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 14.h),
+            padding: EdgeInsets.symmetric(vertical: 12.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -120,7 +121,7 @@ class _FaqSectionState extends State<FaqSection> {
         AnimatedCrossFade(
           firstChild: const SizedBox(height: 0),
           secondChild: Padding(
-            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 16.h),
+            padding: EdgeInsets.only(bottom: 12.h),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(item.answer, style: TextStyle(fontSize: 12.sp, color: Colors.grey[700])),

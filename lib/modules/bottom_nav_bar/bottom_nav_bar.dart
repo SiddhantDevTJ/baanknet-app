@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../common/global_widgets/my_svg.dart';
 import '../../utils/theme/app_theme.dart';
 import '../../utils/theme/my_icon_path.dart';
+import '../home_page/app_bar.dart';
 import '../home_page/home_page.dart';
 
 class MainScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(
         index: _currentIndex,
         children: const [
-          HomePage(),
+          SliverAppBarExample(),
           Center(child: Text('Properties')),
           Center(child: Text('Auctions')),
           Center(child: Text('Profile')),

@@ -13,7 +13,7 @@ class PromoterBankSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Promoters Bank', style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold)),
+          Text('Promoters Bank', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
           SizedBox(height: 24.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

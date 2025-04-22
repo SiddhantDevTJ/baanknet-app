@@ -7,25 +7,43 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../modules/home_page/home_page.dart';
 import '../../utils/theme/app_theme.dart';
 
-class UpcomingPropertyAuction extends StatelessWidget {
+class UpcomingPropertyAuction extends StatefulWidget {
   const UpcomingPropertyAuction({super.key});
 
-  Widget _buildPropertyTypeTab(String text, bool isSelected) {
-    return Padding(
-      padding: EdgeInsets.only(right: 16.0.w),
-      child: Column(
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-              color: isSelected ? AppTheme.secondaryColor : AppTheme.greyColor,
-              fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
-              fontSize: 14.sp,
+  @override
+  State<UpcomingPropertyAuction> createState() => _UpcomingPropertyAuctionState();
+}
+
+class _UpcomingPropertyAuctionState extends State<UpcomingPropertyAuction> {
+  int _selectedIndex = 0;
+  int _selectedPropertyTypeIndex = 0;
+
+  final List<String> _propertyTypes = ['Residential', 'Commercial', 'Agricultural', 'Industrial'];
+
+  Widget _buildPropertyTypeTab(String text, int index) {
+    final bool isSelected = index == _selectedPropertyTypeIndex;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedPropertyTypeIndex = index;
+        });
+      },
+      child: Padding(
+        padding: EdgeInsets.only(right: 16.0.w),
+        child: Column(
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                color: isSelected ? AppTheme.secondaryColor : AppTheme.greyColor,
+                fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
+                fontSize: 14.sp,
+              ),
             ),
-          ),
-          SizedBox(height: 8.h),
-          if (isSelected) Container(height: 2.h, width: 60.w, color: AppTheme.secondaryColor),
-        ],
+            SizedBox(height: 8.h),
+            if (isSelected) Container(height: 2.h, width: 60.w, color: AppTheme.secondaryColor),
+          ],
+        ),
       ),
     );
   }
@@ -50,39 +68,67 @@ class UpcomingPropertyAuction extends StatelessWidget {
           // Category Tabs
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 12.h),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.r),
-                        bottomLeft: Radius.circular(20.r),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.all(Radius.circular(40.r)),
+              ),
+              width: 230.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = 0;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+                      decoration: BoxDecoration(
+                        color: _selectedIndex == 0 ? Colors.black : Colors.grey[200],
+                        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Real Estate',
+                          style: TextStyle(
+                            color: _selectedIndex == 0 ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.sp,
+                          ),
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: Text('Real Estate', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                    ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 12.h),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20.r),
-                        bottomRight: Radius.circular(20.r),
+                  SizedBox(width: 4.w),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = 1;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+                      decoration: BoxDecoration(
+                        color: _selectedIndex == 1 ? Colors.black : Colors.grey[200],
+                        borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Automobiles',
+                          style: TextStyle(
+                            color: _selectedIndex == 1 ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.sp,
+                          ),
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: Text('Automobiles', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           SizedBox(height: 12.h),
@@ -92,12 +138,10 @@ class UpcomingPropertyAuction extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 16.0.w),
             child: Row(
-              children: [
-                _buildPropertyTypeTab('Residential', true),
-                _buildPropertyTypeTab('Commercial', false),
-                _buildPropertyTypeTab('Agricultural', false),
-                _buildPropertyTypeTab('Industrial', false),
-              ],
+              children: List.generate(
+                _propertyTypes.length,
+                (index) => _buildPropertyTypeTab(_propertyTypes[index], index),
+              ),
             ),
           ),
           SizedBox(height: 16.h),
@@ -203,9 +247,7 @@ class AuctionCard extends StatelessWidget {
             Text(location, style: TextStyle(color: Colors.grey[700], fontSize: 12.sp, fontWeight: FontWeight.w400)),
             SizedBox(height: 16.h),
             Container(
-              // color: const Color(0xFFFCF8F6),
               decoration: BoxDecoration(color: const Color(0xFFFCF8F6), borderRadius: BorderRadius.circular(0.r)),
-
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [_buildTimeBox(days, 'days'), _buildTimeBox(hours, 'hours'), _buildTimeBox(mins, 'mins')],
@@ -215,12 +257,10 @@ class AuctionCard extends StatelessWidget {
             // Property Detail Button
             GestureDetector(
               onTap: () {},
-
               child: Container(
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(vertical: 7.h),
                 decoration: BoxDecoration(
-                  // side: BorderSide(color: AppTheme.secondaryColor),
                   borderRadius: BorderRadius.all(Radius.circular(8.r)),
                   border: Border.all(color: AppTheme.secondaryColor),
                 ),
@@ -236,13 +276,11 @@ class AuctionCard extends StatelessWidget {
             // Auction Detail Button
             GestureDetector(
               onTap: () {},
-
               child: Container(
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(vertical: 7.h),
                 decoration: BoxDecoration(
                   color: AppTheme.secondaryColor,
-                  // side: BorderSide(color: AppTheme.secondaryColor),
                   borderRadius: BorderRadius.all(Radius.circular(8.r)),
                   border: Border.all(color: AppTheme.secondaryColor),
                 ),
@@ -264,7 +302,6 @@ class AuctionCard extends StatelessWidget {
     return Container(
       width: 60.w,
       padding: EdgeInsets.symmetric(vertical: 10.h),
-
       child: Column(
         children: [
           Text(value, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14.sp)),

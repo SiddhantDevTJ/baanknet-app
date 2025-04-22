@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../common/home_page_widgets/layered_container_example.dart';
 import '../../common/home_page_widgets/properties_available.dart';
+import 'app_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: CustomAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -247,9 +249,9 @@ class FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 106.w,
-      height: 106.h,
-      padding: EdgeInsets.all(12.r),
+      width: 105.w,
+      height: 107.h,
+      padding: EdgeInsets.all(12.h),
       decoration: BoxDecoration(color: AppTheme.lightOrange, borderRadius: BorderRadius.circular(12.r)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

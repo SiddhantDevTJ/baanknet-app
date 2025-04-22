@@ -62,14 +62,14 @@ class PropertiesAvailable extends StatelessWidget {
 
           // Properties grid
           SizedBox(
-            height: 240.h, // Fixed height for horizontal scrolling list
+            height: 260.h, // Fixed height for horizontal scrolling list
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               itemCount: properties.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.only(right: index == properties.length - 1 ? 0 : 16.w),
+                  padding: EdgeInsets.only(right: index == properties.length - 1 ? 0 : 12.w),
                   child: PropertyCard(property: properties[index]),
                 );
               },
@@ -120,6 +120,7 @@ class PropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 220.w,
+      height: 240.h,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
@@ -145,9 +146,9 @@ class PropertyCard extends StatelessWidget {
 
           // Property ID and Category
           Positioned(
-            bottom: 16.h,
-            left: 16.w,
-            right: 16.w,
+            bottom: 24.h,
+            left: 24.w,
+            right: 24.w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

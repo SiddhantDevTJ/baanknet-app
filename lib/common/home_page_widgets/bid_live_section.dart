@@ -54,7 +54,8 @@ class StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(0xFF212121),
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: AppTheme.greyColor, width: 0.5),
+        border: Border.all(color: AppTheme.whiteColor, width: 0.5),
+        // border: Border.all(color: Color(0xFF212121), width: 0.5),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

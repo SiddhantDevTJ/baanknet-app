@@ -10,8 +10,8 @@ class LayeredContainerExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 10.h),
-      child: Container(
+      padding: EdgeInsets.only(left: 24.w, right: 24.w),
+      child: SizedBox(
         height: 192.h,
         width: 342.w, // Ensure full width
         // Don't set decoration with image here - we'll use a Stack instead
@@ -42,23 +42,25 @@ class LayeredContainerExample extends StatelessWidget {
               ),
 
               // Layer 3: Content (top layer)
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 24.w),
+              Container(
+                height: 192.h,
+                width: 342.w,
+                margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 24.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyImage(assetName: MyImagePath.unionBank, width: 94.w, height: 20.h),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 14.h),
                     // Bank name
                     Text(
-                      'Mega Auction of 800+ \n Property across India',
+                      'Mega Auction of 800+ \nProperty across India',
                       style: TextStyle(color: Colors.white, fontSize: 14.sp, fontWeight: FontWeight.w600),
                     ),
 
-                    SizedBox(height: 2.h),
+                    SizedBox(height: 8.h),
 
                     Text('Start from 28 Apr,2025', style: TextStyle(color: AppTheme.greyColor, fontSize: 11.sp)),
-                    SizedBox(height: 22.h),
+                    SizedBox(height: 16.h),
 
                     ElevatedButton(
                       onPressed: () {},
@@ -66,9 +68,12 @@ class LayeredContainerExample extends StatelessWidget {
                         backgroundColor: AppTheme.primaryColor,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
-                        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
                       ),
-                      child: Text('Explore Now', style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                      child: Text(
+                        'Explore Now',
+                        style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w700, letterSpacing: 0.7),
+                      ),
                     ),
                   ],
                 ),
