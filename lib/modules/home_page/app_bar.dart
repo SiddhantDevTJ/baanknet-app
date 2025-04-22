@@ -6,9 +6,9 @@ import '../../common/global_widgets/my_svg.dart';
 import '../../common/home_page_widgets/about_banknet_section.dart';
 import '../../common/home_page_widgets/bid_live_section.dart';
 import '../../common/home_page_widgets/explore_category_section.dart';
-import '../../common/home_page_widgets/faq_section.dart';
+import 'faq/faq_section.dart';
 import '../../common/home_page_widgets/layered_container_example.dart';
-import '../../common/home_page_widgets/promoter_bank_section.dart';
+import 'promoter_bank/promoter_bank_section.dart';
 import '../../common/home_page_widgets/properties_available.dart';
 import '../../common/home_page_widgets/upcoming_property_auction.dart';
 import '../../utils/theme/app_theme.dart';
@@ -69,7 +69,7 @@ class SliverAppBarExample extends StatelessWidget {
                   background: Stack(
                     fit: StackFit.expand,
                     children: [
-                      Image.asset(MyImagePath.appBarImage, fit: BoxFit.cover),
+                      Image.asset(MyImagePath.appBarImage2, fit: BoxFit.cover),
                       Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -126,7 +126,7 @@ class SliverAppBarExample extends StatelessWidget {
               children: [
                 SizedBox(height: 20.h),
                 LayeredContainerExample(),
-                SizedBox(height: 35.h),
+                SizedBox(height: 20.h),
 
                 // Property Listings
                 ExploreCatogerySection(),
@@ -147,6 +147,10 @@ class SliverAppBarExample extends StatelessWidget {
 
                 // Properties Available
                 PropertiesAvailable(onSeeAllPressed: () {}),
+                SizedBox(height: 5),
+
+                PromoterBankSection(),
+                SizedBox(height: 5),
 
                 // FAQ Section
                 FaqSection(),

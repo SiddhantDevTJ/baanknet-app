@@ -37,7 +37,12 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.5
   flutter_screenutil: ^5.9.3
-  draggable_home: ^1.0.5
+  dio: ^5.8.0+1
+  get: ^4.7.2
+  pretty_dio_logger: ^1.4.0
+  carousel_slider: ^5.0.0
+
+
 
 
 dev_dependencies:

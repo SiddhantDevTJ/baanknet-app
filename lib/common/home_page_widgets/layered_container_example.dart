@@ -1,86 +1,110 @@
-import 'package:baanknet/common/global_widgets/my_image.dart';
 import 'package:baanknet/utils/theme/app_theme.dart';
 import 'package:baanknet/utils/theme/my_image_path.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LayeredContainerExample extends StatelessWidget {
+class LayeredContainerExample extends StatefulWidget {
   const LayeredContainerExample({Key? key}) : super(key: key);
 
   @override
+  State<LayeredContainerExample> createState() => _LayeredContainerExampleState();
+}
+
+class _LayeredContainerExampleState extends State<LayeredContainerExample> {
+  int _currentIndex = 0;
+  final CarouselSliderController _carouselController = CarouselSliderController();
+
+  // Sample list of image URLs - replace with your own images
+  final List<String> imageList = [MyImagePath.homePageBanner, MyImagePath.homePageBanner, MyImagePath.homePageBanner];
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 24.w, right: 24.w),
-      child: SizedBox(
-        height: 192.h,
-        width: 342.w, // Ensure full width
-        // Don't set decoration with image here - we'll use a Stack instead
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(12.r),
-          child: Stack(
-            fit: StackFit.expand, // Make sure Stack fills the Container
-            children: [
-              // Layer 1: Background Image (bottom layer)
-              Image.asset(
-                MyImagePath.bg2,
-                // Replace with your actual image path
-                fit: BoxFit.cover,
-              ),
-
-              // Layer 2: Gradient Overlay (middle layer)
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black.withOpacity(0.2), // Reduced opacity at top
-                      Colors.black.withOpacity(0.5), // Stronger opacity at bottom
-                    ],
-                  ),
-                ),
-              ),
-
-              // Layer 3: Content (top layer)
-              Container(
-                height: 192.h,
-                width: 342.w,
-                margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 24.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MyImage(assetName: MyImagePath.unionBank, width: 94.w, height: 20.h),
-                    SizedBox(height: 14.h),
-                    // Bank name
-                    Text(
-                      'Mega Auction of 800+ \nProperty across India',
-                      style: TextStyle(color: Colors.white, fontSize: 14.sp, fontWeight: FontWeight.w600),
-                    ),
-
-                    SizedBox(height: 8.h),
-
-                    Text('Start from 28 Apr,2025', style: TextStyle(color: AppTheme.greyColor, fontSize: 11.sp)),
-                    SizedBox(height: 16.h),
-
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppTheme.primaryColor,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
-                        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
+    return Container(
+      // color: Colors.yellow,
+      height: 230.h,
+      width: double.maxFinite,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 200.h,
+            child: CarouselSlider(
+              items:
+                  imageList.map((imageUrl) {
+                    return Container(
+                      margin: const EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        boxShadow: const [BoxShadow(color: Colors.black26, offset: Offset(0, 2), blurRadius: 6.0)],
                       ),
-                      child: Text(
-                        'Explore Now',
-                        style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w700, letterSpacing: 0.7),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(imageUrl, fit: BoxFit.cover, width: double.maxFinite),
                       ),
-                    ),
-                  ],
-                ),
+                    );
+                  }).toList(),
+              carouselController: _carouselController,
+              options: CarouselOptions(
+                // enlargeCenterPage: true,
+                autoPlay: true,
+                aspectRatio: 16 / 9,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                viewportFraction: 1,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
               ),
-            ],
+            ),
           ),
-        ),
+          SizedBox(height: 10.h),
+
+          // Indicators
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:
+                imageList.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => _carouselController.animateToPage(entry.key),
+                    child: Container(
+                      width: 8.w,
+                      height: 8.h,
+                      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppTheme.blackColor.withOpacity(_currentIndex == entry.key ? 0.9 : 0.3),
+                      ),
+                    ),
+                  );
+                }).toList(),
+          ),
+          // const SizedBox(height: 30),
+          // Navigation buttons
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     ElevatedButton(
+          //       onPressed:
+          //           () => _carouselController.previousPage(
+          //             duration: const Duration(milliseconds: 300),
+          //             curve: Curves.easeIn,
+          //           ),
+          //       child: const Icon(Icons.arrow_back),
+          //     ),
+          //     const SizedBox(width: 20),
+          //     ElevatedButton(
+          //       onPressed:
+          //           () =>
+          //               _carouselController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeIn),
+          //       child: const Icon(Icons.arrow_forward),
+          //     ),
+          //   ],
+          // ),
+        ],
       ),
     );
   }

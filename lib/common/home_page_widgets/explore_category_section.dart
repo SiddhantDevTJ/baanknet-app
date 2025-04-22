@@ -92,7 +92,7 @@ class _ExploreCategorySectionState extends State<ExploreCatogerySection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Explore Assets by Category', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+          Text('Explore Assets by Category', style: Theme.of(context).textTheme.headlineSmall),
           SizedBox(height: 12.h),
           // Segmented Control with tap functionality
           Container(
@@ -184,19 +184,14 @@ class _ExploreCategorySectionState extends State<ExploreCatogerySection> {
           ),
           // SizedBox(height: 10.h),
           Center(
-            child: GestureDetector(
-              onTap: () {},
+            child: TextButton(
+              onPressed: () {},
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     _selectedIndex == 0 ? 'See all Properties' : 'See all Vehicles',
-                    style: TextStyle(
-                      color: AppTheme.secondaryColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12,
-                      fontStyle: FontStyle.normal,
-                    ),
+                    style: TextStyle(color: AppTheme.secondaryColor, fontWeight: FontWeight.w700, fontSize: 12.sp),
                   ),
                   SizedBox(width: 5.w),
                   Icon(Icons.arrow_forward, color: AppTheme.secondaryColor, size: 16.r),

@@ -13,8 +13,10 @@ class MyImagePath {
   static const String bankOfIndia = '${_basePath}bank_of_india_logo.png';
   static const String canaraBank = '${_basePath}canara_bank_logo.png';
   static const String appBarImage = '${_basePath}app-bar-image.jpeg';
+  static const String appBarImage2 = '${_basePath}app-bar-image2.png';
   static const String bg = '${_basePath}bg.png';
   static const String bg2 = '${_basePath}bg2.png';
+  static const String homePageBanner = '${_basePath}banner.png';
   static const String unionBank = '${_basePath}image-6.png';
   static const String imageProd = '${_basePath}img-prod.png';
   static const String image22 = '${_basePath}image-22.png';

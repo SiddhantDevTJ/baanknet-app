@@ -35,7 +35,7 @@ class PropertiesAvailable extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black87, fontSize: 16.sp)),
+                Text(title, style: Theme.of(context).textTheme.headlineSmall),
                 if (showSeeAll)
                   GestureDetector(
                     onTap: onSeeAllPressed,
@@ -45,12 +45,12 @@ class PropertiesAvailable extends StatelessWidget {
                           'See all',
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w700,
                             fontSize: 12.sp,
                           ),
                         ),
                         SizedBox(width: 4.w),
-                        Icon(Icons.arrow_forward, size: 16.r, color: Theme.of(context).colorScheme.secondary),
+                        Icon(Icons.arrow_forward, size: 16.sp, color: Theme.of(context).colorScheme.secondary),
                       ],
                     ),
                   ),

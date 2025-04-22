@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Colors
-  static const Color primaryColor = Color(0xFF00579C); // Dark blue from header
+  static const Color primaryColor = Color(0xFF003462); // Dark blue from header
   static const Color secondaryColor = Color(0xFFFF5E15); // Orange from buttons
   static const Color lightOrange = Color(0xFFFFF7F3); // Orange from buttons
   static const Color backgroundColor = Color(0xFFFEF7F4); // Light background
@@ -23,8 +24,8 @@ class AppTheme {
     displaySmall: GoogleFonts.poppins(fontSize: 24.0, fontWeight: FontWeight.bold, color: textDarkColor),
     headlineLarge: GoogleFonts.poppins(fontSize: 22.0, fontWeight: FontWeight.w600, color: textDarkColor),
     headlineMedium: GoogleFonts.poppins(fontSize: 20.0, fontWeight: FontWeight.w600, color: textDarkColor),
-    headlineSmall: GoogleFonts.poppins(fontSize: 18.0, fontWeight: FontWeight.w600, color: textDarkColor),
-    titleLarge: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600, color: textDarkColor),
+    headlineSmall: GoogleFonts.poppins(fontSize: 18.sp, fontWeight: FontWeight.w600, color: textDarkColor),
+    titleLarge: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w600, color: textDarkColor),
     titleMedium: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w500, color: textDarkColor),
     titleSmall: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w500, color: textDarkColor),
     bodyLarge: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.normal, color: textDarkColor),

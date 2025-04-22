@@ -20,8 +20,8 @@ class AboutBankNetSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('About BAANKNET', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
-              Text('(Bank Asset Auction Network)', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+              Text('About BAANKNET', style: Theme.of(context).textTheme.headlineSmall),
+              Text('(Bank Asset Auction Network)', style: Theme.of(context).textTheme.headlineSmall),
               SizedBox(height: 16.h),
               Text(
                 'A state-of-the-art innovative property listing and e-auction platform designed specifically for banks and lending institutions, addressing recovery of Non-Performing Assets.',

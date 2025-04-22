@@ -59,7 +59,7 @@ class _UpcomingPropertyAuctionState extends State<UpcomingPropertyAuction> {
           Center(
             child: Text(
               'Upcoming Auctions in 30 Days',
-              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
           ),
@@ -286,7 +286,7 @@ class AuctionCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Property Detail',
+                    'Auction Detail',
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.sp, color: AppTheme.whiteColor),
                   ),
                 ),
