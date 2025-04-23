@@ -25,4 +25,6 @@ class MyImagePath {
   static const String image40 = '${_basePath}image-40.png';
   static const String image41 = '${_basePath}image-41.png';
   static const String image42 = '${_basePath}image-42.png';
+  static const String pbLogo1 = '${_basePath}pb-logo1.png';
+  static const String pbLogo2 = '${_basePath}pb-logo2.png';
 }

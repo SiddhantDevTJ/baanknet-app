@@ -59,41 +59,36 @@ class AboutBankNetSection extends StatelessWidget {
               ),
               SizedBox(height: 24.h),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('An initiative of'),
-                        SizedBox(height: 10.h),
+                    child: Container(
+                      // color: Colors.yellow,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('An initiative of'),
+                          SizedBox(height: 10.h),
 
-                        Row(
-                          children: [
-                            MyImage(assetName: MyImagePath.image22, height: 30.h, width: 110.w),
-                            SizedBox(width: 16.w),
-                            MyImage(assetName: MyImagePath.image24),
-                          ],
-                        ),
-                      ],
+                          MyImage(assetName: MyImagePath.pbLogo1, color: AppTheme.blackColor),
+                        ],
+                      ),
                     ),
                   ),
+                  SizedBox(width: 10.w),
                   Expanded(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+
                       crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
                         Text('Powered by'),
-                        SizedBox(height: 5.h),
-                        Row(
-                          children: [
-                            MySvg(assetName: MyImagePath.psbAlliance, color: AppTheme.greyColor, width: 60.w),
-                            SizedBox(width: 10.w),
+                        SizedBox(height: 13.h),
 
-                            MyImage(assetName: MyImagePath.baankknet, width: 90.w),
-                            SizedBox(width: 10.w),
-                          ],
-                        ),
+                        MyImage(assetName: MyImagePath.pbLogo2, color: AppTheme.blackColor),
                       ],
                     ),
                   ),
